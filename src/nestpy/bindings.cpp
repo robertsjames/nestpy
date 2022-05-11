@@ -6,6 +6,7 @@
 #include "LUX_Run03.hh"
 #include "DetectorExample_XENON10.hh"
 #include "RandomGen.hh"
+#include "Detector_G3.hh"
 #include <pybind11/numpy.h>
 #include <pybind11/stl_bind.h>
 #include <pybind11/stl.h>
@@ -40,7 +41,7 @@ PYBIND11_MODULE(nestpy, m) {
 	.def_readwrite("yields", &NEST::NESTresult::yields)
 	.def_readwrite("quanta", &NEST::NESTresult::quanta)
 	.def_readwrite("photon_times", &NEST::NESTresult::photon_times);
- 
+
   // Binding for Wvalue struct...
   py::class_<NEST::NESTcalc::Wvalue>(m, "Wvalue", py::dynamic_attr())
     .def(py::init<>())
@@ -169,7 +170,7 @@ PYBIND11_MODULE(nestpy, m) {
 
 	.def("OptTrans", &VDetector::OptTrans)
   	.def("SinglePEWaveForm", &VDetector::SinglePEWaveForm);
-  
+
   //	Binding for example XENON10
   py::class_<DetectorExample_XENON10, VDetector, std::unique_ptr<DetectorExample_XENON10, py::nodelete>>(m, "DetectorExample_XENON10")
      .def(py::init<>())
@@ -185,32 +186,41 @@ PYBIND11_MODULE(nestpy, m) {
 	 .def("FitTBA", &DetectorExample_LUX_RUN03::FitTBA)
 	 .def("OptTrans", &DetectorExample_LUX_RUN03::OptTrans)
 	 .def("SinglePEWaveForm", &DetectorExample_LUX_RUN03::SinglePEWaveForm);
+
+  //	Binding for Detector_G3
+  py::class_<Detector_G3, VDetector, std::unique_ptr<Detector_G3, py::nodelete>>(m, "G3")
+    .def(py::init<>())
+   .def("Initialization", &Detector_G3::Initialization)
+   .def("FitTBA", &Detector_G3::FitTBA)
+   .def("OptTrans", &Detector_G3::OptTrans)
+   .def("SinglePEWaveForm", &Detector_G3::SinglePEWaveForm);
+
   //py::class_<VDetector, std::unique_ptr<VDetector, py::nodelete>>(m, "VDetector")
   // Binding for the TestSpectra class
   py::class_<TestSpectra, std::unique_ptr<TestSpectra, py::nodelete>>(m, "TestSpectra")
      .def(py::init<>())
-        .def_static("CH3T_spectrum", 
-               &TestSpectra::CH3T_spectrum, 
+        .def_static("CH3T_spectrum",
+               &TestSpectra::CH3T_spectrum,
                py::arg("xMin") = 0.,
                py::arg("xMax") = 18.6
              )
-	
+
         .def_static("C14_spectrum",
                &TestSpectra::C14_spectrum,
                py::arg("xMin") = 0.,
                py::arg("xMax") = 156.
             )
-        .def_static("B8_spectrum", 
+        .def_static("B8_spectrum",
                &TestSpectra::B8_spectrum,
                py::arg("xMin") = 0.,
                py::arg("xMax") = 4.
             )
-        .def_static("AmBe_spectrum", 
+        .def_static("AmBe_spectrum",
                &TestSpectra::AmBe_spectrum,
                py::arg("xMin") = 0.,
                py::arg("xMax") = 200.
             )
-        .def_static("Cf_spectrum", 
+        .def_static("Cf_spectrum",
               &TestSpectra::Cf_spectrum,
               py::arg("xMin") = 0.,
               py::arg("xMax") = 200.
@@ -224,7 +234,7 @@ PYBIND11_MODULE(nestpy, m) {
 	      py::arg("peakMu") = 60.,
 	      py::arg("peakSig") = 25.
             )
-        .def_static("ppSolar_spectrum", 
+        .def_static("ppSolar_spectrum",
               &TestSpectra::ppSolar_spectrum,
               py::arg("xMin") = 0.,
               py::arg("xMax") = 250.
@@ -234,7 +244,7 @@ PYBIND11_MODULE(nestpy, m) {
               py::arg("xMin") = 0.,
               py::arg("xMax") = 85.
             )
-	.def_static("WIMP_prep_spectrum", 
+	.def_static("WIMP_prep_spectrum",
 	      &TestSpectra::WIMP_prep_spectrum,
 	      py::arg("mass") = 50.,
 	      py::arg("eStep") = 5.,
@@ -246,7 +256,7 @@ PYBIND11_MODULE(nestpy, m) {
 	      py::arg("mass") = 50.,
 	      py::arg("day") = 0.
 	    );
-        
+
   //	Binding for the NESTcalc class
   py::class_<NEST::NESTcalc, std::unique_ptr<NEST::NESTcalc, py::nodelete>>(m, "NESTcalc")
     //.def(py::init<>())
@@ -267,10 +277,10 @@ PYBIND11_MODULE(nestpy, m) {
 	     py::arg("maxTimeSeparation") = 2000.,
 	     py::arg("minTimeSeparation") = 0.0
 	 )
-    .def("GetYieldERWeighted", 
-	     &NEST::NESTcalc::GetYieldERWeighted, 
+    .def("GetYieldERWeighted",
+	     &NEST::NESTcalc::GetYieldERWeighted,
 	     py::arg("energy") = 5.2,
-	     py::arg("density") = 2.9, 
+	     py::arg("density") = 2.9,
 	     py::arg("drift_field") = 124,
 	     py::arg("nuisance_parameters") = std::vector<double>({ 11., 1.1, 0.0480, -0.0533, 12.6, 0.3, 2., 0.3, 2., 0.5, 1., 1.})
 	)
@@ -282,15 +292,15 @@ PYBIND11_MODULE(nestpy, m) {
 	     py::arg("drift_field") = 124,
 	     py::arg("A") = 131.293,
 	     py::arg("Z") = 54,
-	     py::arg("nuisance_parameters") = std::vector<double>({ 11., 1.1, 0.0480, -0.0533, 12.6, 0.3, 2., 0.3, 2., 0.5, 1., 1.}), 
+	     py::arg("nuisance_parameters") = std::vector<double>({ 11., 1.1, 0.0480, -0.0533, 12.6, 0.3, 2., 0.3, 2., 0.5, 1., 1.}),
          py::arg("oldModelER") = false
 	 )
     .def("GetQuanta", &NEST::NESTcalc::GetQuanta,
 	    py::arg("yields"),
 	    py::arg("density") = 2.9,
-	    py::arg("free_parameters") = std::vector<double>({1.,1.,0.1,0.5,0.19,2.25, 0.0015, 0.0553, 0.205, 0.45, -0.2}), 
+	    py::arg("free_parameters") = std::vector<double>({1.,1.,0.1,0.5,0.19,2.25, 0.0015, 0.0553, 0.205, 0.45, -0.2}),
         py::arg("oldModelER") = false
-     )   
+     )
 	.def("GetS1", &NEST::NESTcalc::GetS1)
 	.def("GetSpike", &NEST::NESTcalc::GetSpike)
 	// Currently VDetector.FitTBA() requires we reinitialize the detector every time:
@@ -317,11 +327,10 @@ PYBIND11_MODULE(nestpy, m) {
 	.def("PhotonEnergy", &NEST::NESTcalc::PhotonEnergy)
 	.def("CalcElectronLET", &NEST::NESTcalc::CalcElectronLET)
 	.def("GetDetector", &NEST::NESTcalc::GetDetector);
-   
+
   //	execNEST function
   m.def("execNEST", &execNEST);
   m.def("GetEnergyRes", &GetEnergyRes);
   m.def("GetBand", &GetBand);
-  
-}
 
+}
