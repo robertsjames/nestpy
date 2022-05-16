@@ -30,7 +30,7 @@ class Detector_G3 : public VDetector {
 
   void Initialization() override {
     // Primary Scintillation (S1) parameters
-    g1 = 0.118735;   // phd per S1 phot at dtCntr (not phe). Divide out 2-PE
+    g1 = 0.12;   // phd per S1 phot at dtCntr (not phe). Divide out 2-PE
                      // effect
     sPEres = 0.38;   // single phe resolution (Gaussian assumed)
     sPEthr = 0.375;  // POD threshold in phe, usually used IN PLACE of sPEeff
@@ -41,18 +41,18 @@ class Detector_G3 : public VDetector {
     noiseBaseline[3] = 0.0;
     P_dphe = 0.2;  // chance 1 photon makes 2 phe instead of 1 in Hamamatsu PMT
 
-    coinWind = 150;  // S1 coincidence window in ns
-    coinLevel = 3;   // how many PMTs have to fire for an S1 to count
-    numPMTs = 494;   // For coincidence calculation
+    coinWind = 100;  // S1 coincidence window in ns
+    coinLevel = 2;   // how many PMTs have to fire for an S1 to count
+    numPMTs = 1000;   // For coincidence calculation
 
     // Ionization and Secondary Scintillation (S2) parameters
-    g1_gas = 0.1018;  // phd per S2 photon in gas, used to get SE size
+    g1_gas = 0.10;  // phd per S2 photon in gas, used to get SE size
     s2Fano = 2.0;     // Fano-like fudge factor for SE width
     s2_thr =
-        470. *
+        165. *
         (1.0 +
          P_dphe);  // the S2 threshold in phe or PE, *not* phd. Affects NR most
-    E_gas = 10.821;   // field in kV/cm between liquid/gas border and anode
+    E_gas = 6.4;   // field in kV/cm between liquid/gas border and anode
     eLife_us = 850.;  // the drift electron mean lifetime in micro-seconds
 
     // Thermodynamic Properties
@@ -62,12 +62,12 @@ class Detector_G3 : public VDetector {
     // if you are getting warnings about being in gas, lower T and/or raise p
 
     // Data Analysis Parameters and Geometry
-    dtCntr = 505.123;  // center of detector for S1 corrections, in usec.
+    dtCntr = 505.123 * 2.;  // center of detector for S1 corrections, in usec.
     dt_min = 0.01;     // minimum. Top of detector fiducial volume
-    dt_max = 894.74;   // maximum. Bottom of detector fiducial volume
+    dt_max = 894.74 * 2.;   // maximum. Bottom of detector fiducial volume
 
-    radius = 728.;  // millimeters (fiducial rad)
-    radmax = 728.;  // actual physical geo. limit
+    radius = 1200.;  // millimeters (fiducial rad)
+    radmax = 1200.;  // actual physical geo. limit
 
     TopDrift = 1461.;  // mm not cm or us (but, this *is* where dt=0)
     // a z-axis value of 0 means the bottom of the detector (cathode OR bottom
