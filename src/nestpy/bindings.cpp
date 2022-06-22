@@ -6,7 +6,18 @@
 #include "LUX_Run03.hh"
 #include "DetectorExample_XENON10.hh"
 #include "RandomGen.hh"
-#include "Detector_G3.hh"
+#include "Detector_G3_A.hh"
+#include "Detector_G3_B.hh"
+#include "Detector_G3_C.hh"
+#include "Detector_G3_D.hh"
+#include "Detector_G3_E.hh"
+#include "Detector_G3_F.hh"
+#include "Detector_G3_G.hh"
+#include "Detector_G3_H.hh"
+#include "Detector_G3_I.hh"
+#include "Detector_G3_J.hh"
+#include "Detector_G3_K.hh"
+#include "Detector_G3_L.hh"
 #include <pybind11/numpy.h>
 #include <pybind11/stl_bind.h>
 #include <pybind11/stl.h>
@@ -187,13 +198,101 @@ PYBIND11_MODULE(nestpy, m) {
 	 .def("OptTrans", &DetectorExample_LUX_RUN03::OptTrans)
 	 .def("SinglePEWaveForm", &DetectorExample_LUX_RUN03::SinglePEWaveForm);
 
-  //	Binding for Detector_G3
-  py::class_<Detector_G3, VDetector, std::unique_ptr<Detector_G3, py::nodelete>>(m, "G3")
+  //	Binding for Detector_G3_A
+  py::class_<Detector_G3_A, VDetector, std::unique_ptr<Detector_G3_A, py::nodelete>>(m, "G3_A")
     .def(py::init<>())
-   .def("Initialization", &Detector_G3::Initialization)
-   .def("FitTBA", &Detector_G3::FitTBA)
-   .def("OptTrans", &Detector_G3::OptTrans)
-   .def("SinglePEWaveForm", &Detector_G3::SinglePEWaveForm);
+   .def("Initialization", &Detector_G3_A::Initialization)
+   .def("FitTBA", &Detector_G3_A::FitTBA)
+   .def("OptTrans", &Detector_G3_A::OptTrans)
+   .def("SinglePEWaveForm", &Detector_G3_A::SinglePEWaveForm);
+
+  //	Binding for Detector_G3_B
+  py::class_<Detector_G3_B, VDetector, std::unique_ptr<Detector_G3_B, py::nodelete>>(m, "G3_B")
+    .def(py::init<>())
+   .def("Initialization", &Detector_G3_B::Initialization)
+   .def("FitTBA", &Detector_G3_B::FitTBA)
+   .def("OptTrans", &Detector_G3_B::OptTrans)
+   .def("SinglePEWaveForm", &Detector_G3_B::SinglePEWaveForm);
+
+  //	Binding for Detector_G3_C
+  py::class_<Detector_G3_C, VDetector, std::unique_ptr<Detector_G3_C, py::nodelete>>(m, "G3_C")
+    .def(py::init<>())
+   .def("Initialization", &Detector_G3_C::Initialization)
+   .def("FitTBA", &Detector_G3_C::FitTBA)
+   .def("OptTrans", &Detector_G3_C::OptTrans)
+   .def("SinglePEWaveForm", &Detector_G3_C::SinglePEWaveForm);
+
+  //	Binding for Detector_G3_D
+  py::class_<Detector_G3_D, VDetector, std::unique_ptr<Detector_G3_D, py::nodelete>>(m, "G3_D")
+    .def(py::init<>())
+   .def("Initialization", &Detector_G3_D::Initialization)
+   .def("FitTBA", &Detector_G3_D::FitTBA)
+   .def("OptTrans", &Detector_G3_D::OptTrans)
+   .def("SinglePEWaveForm", &Detector_G3_D::SinglePEWaveForm);
+
+  //	Binding for Detector_G3_E
+  py::class_<Detector_G3_E, VDetector, std::unique_ptr<Detector_G3_E, py::nodelete>>(m, "G3_E")
+    .def(py::init<>())
+   .def("Initialization", &Detector_G3_E::Initialization)
+   .def("FitTBA", &Detector_G3_E::FitTBA)
+   .def("OptTrans", &Detector_G3_E::OptTrans)
+   .def("SinglePEWaveForm", &Detector_G3_E::SinglePEWaveForm);
+
+  //	Binding for Detector_G3_F
+  py::class_<Detector_G3_F, VDetector, std::unique_ptr<Detector_G3_F, py::nodelete>>(m, "G3_F")
+    .def(py::init<>())
+   .def("Initialization", &Detector_G3_F::Initialization)
+   .def("FitTBA", &Detector_G3_F::FitTBA)
+   .def("OptTrans", &Detector_G3_F::OptTrans)
+   .def("SinglePEWaveForm", &Detector_G3_F::SinglePEWaveForm);
+
+  //	Binding for Detector_G3_G
+  py::class_<Detector_G3_G, VDetector, std::unique_ptr<Detector_G3_G, py::nodelete>>(m, "G3_G")
+    .def(py::init<>())
+   .def("Initialization", &Detector_G3_G::Initialization)
+   .def("FitTBA", &Detector_G3_G::FitTBA)
+   .def("OptTrans", &Detector_G3_G::OptTrans)
+   .def("SinglePEWaveForm", &Detector_G3_G::SinglePEWaveForm);
+
+  //	Binding for Detector_G3_H
+  py::class_<Detector_G3_H, VDetector, std::unique_ptr<Detector_G3_H, py::nodelete>>(m, "G3_H")
+    .def(py::init<>())
+   .def("Initialization", &Detector_G3_H::Initialization)
+   .def("FitTBA", &Detector_G3_H::FitTBA)
+   .def("OptTrans", &Detector_G3_H::OptTrans)
+   .def("SinglePEWaveForm", &Detector_G3_H::SinglePEWaveForm);
+
+  //	Binding for Detector_G3_I
+  py::class_<Detector_G3_I, VDetector, std::unique_ptr<Detector_G3_I, py::nodelete>>(m, "G3_I")
+    .def(py::init<>())
+   .def("Initialization", &Detector_G3_I::Initialization)
+   .def("FitTBA", &Detector_G3_I::FitTBA)
+   .def("OptTrans", &Detector_G3_I::OptTrans)
+   .def("SinglePEWaveForm", &Detector_G3_I::SinglePEWaveForm);
+
+  //	Binding for Detector_G3_J
+  py::class_<Detector_G3_J, VDetector, std::unique_ptr<Detector_G3_J, py::nodelete>>(m, "G3_J")
+    .def(py::init<>())
+   .def("Initialization", &Detector_G3_J::Initialization)
+   .def("FitTBA", &Detector_G3_J::FitTBA)
+   .def("OptTrans", &Detector_G3_J::OptTrans)
+   .def("SinglePEWaveForm", &Detector_G3_J::SinglePEWaveForm);
+
+  //	Binding for Detector_G3_K
+  py::class_<Detector_G3_K, VDetector, std::unique_ptr<Detector_G3_K, py::nodelete>>(m, "G3_K")
+    .def(py::init<>())
+   .def("Initialization", &Detector_G3_K::Initialization)
+   .def("FitTBA", &Detector_G3_K::FitTBA)
+   .def("OptTrans", &Detector_G3_K::OptTrans)
+   .def("SinglePEWaveForm", &Detector_G3_K::SinglePEWaveForm);
+
+  //	Binding for Detector_G3_L
+  py::class_<Detector_G3_L, VDetector, std::unique_ptr<Detector_G3_L, py::nodelete>>(m, "G3_L")
+    .def(py::init<>())
+   .def("Initialization", &Detector_G3_L::Initialization)
+   .def("FitTBA", &Detector_G3_L::FitTBA)
+   .def("OptTrans", &Detector_G3_L::OptTrans)
+   .def("SinglePEWaveForm", &Detector_G3_L::SinglePEWaveForm);
 
   //py::class_<VDetector, std::unique_ptr<VDetector, py::nodelete>>(m, "VDetector")
   // Binding for the TestSpectra class

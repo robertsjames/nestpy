@@ -9,16 +9,16 @@
 // Note: Parameters here are subject to change based on future
 // performance studies
 //
-#ifndef NEST_DETECTOR_G3_HH
-#define NEST_DETECTOR_G3_HH
+#ifndef NEST_DETECTOR_G3_F_HH
+#define NEST_DETECTOR_G3_F_HH
 
 #include "VDetector.hh"
 
 using namespace std;
 
-class Detector_G3 : public VDetector {
+class Detector_G3_F : public VDetector {
  public:
-  Detector_G3() {
+  Detector_G3_F() {
     cerr << "You are currently using the projected G3 detector." << endl
          << endl;
 
@@ -26,7 +26,7 @@ class Detector_G3 : public VDetector {
     Initialization();
   }
 
-  ~Detector_G3() override = default;
+  ~Detector_G3_F() override = default;
 
   void Initialization() override {
     // Primary Scintillation (S1) parameters
@@ -62,12 +62,12 @@ class Detector_G3 : public VDetector {
     // if you are getting warnings about being in gas, lower T and/or raise p
 
     // Data Analysis Parameters and Geometry
-    dtCntr = 505.123 * 2.;  // center of detector for S1 corrections, in usec.
+    dtCntr = 505.123 * 2.05 * 1.210;  // center of detector for S1 corrections, in usec.
     dt_min = 0.01;     // minimum. Top of detector fiducial volume
-    dt_max = 894.74 * 2.;   // maximum. Bottom of detector fiducial volume
+    dt_max = 894.74 * 2.05 * 1.210;   // maximum. Bottom of detector fiducial volume
 
-    radius = 1200.;  // millimeters (fiducial rad)
-    radmax = 1200.;  // actual physical geo. limit
+    radius = 1350.;  // millimeters (fiducial rad)
+    radmax = 1350.;  // actual physical geo. limit
 
     TopDrift = 1461.;  // mm not cm or us (but, this *is* where dt=0)
     // a z-axis value of 0 means the bottom of the detector (cathode OR bottom
@@ -102,7 +102,7 @@ class Detector_G3 : public VDetector {
   // For example, use a high-order poly spline
   double FitEF(double xPos_mm, double yPos_mm,
                double zPos_mm) override {  // in V/cm
-    return 180.;                           // Simple uniform field
+    return 100.;                           // Simple uniform field
   }
 
   // S2 PDE custom fit for function of r
@@ -213,4 +213,4 @@ class Detector_G3 : public VDetector {
   }
 };
 
-#endif  // NEST_DETECTOR_G3_HH
+#endif  // NEST_DETECTOR_G3_F_HH
